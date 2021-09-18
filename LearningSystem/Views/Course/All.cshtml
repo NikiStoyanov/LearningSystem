@@ -1,0 +1,33 @@
+﻿@using LearningSystem.Data.Models
+@{
+    var courses = (List<Course>)this.ViewBag.Courses;
+    ViewData["Title"] = ViewBag.PathName;
+}
+
+<div class="text-center">
+    <h1 class="display-4">@ViewBag.PathName</h1>
+    <br /><br />
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Time</th>
+            <th scope="col">Trainer</th>
+            <th scope="col">Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var course in courses)
+        {
+            <tr>
+                <td>@course.Name</td>
+                <td>@course.Time</td>
+                <td>@course.TrainerName</td>
+                <td>
+                    <a type="button" class="btn btn-outline-secondary" asp-controller="Lecture" asp-action="All" asp-route-id="@course.Id">Open</a>
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+</div>

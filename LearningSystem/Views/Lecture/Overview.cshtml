@@ -1,0 +1,44 @@
+﻿@using LearningSystem.Data.Models
+@{
+    var lecture = (Lecture)this.ViewBag.Lecture;
+    ViewData["Title"] = lecture.Name;
+    var videoURL = "https://www.youtube.com/embed/" + lecture.VideoUrl;
+    var exerciseURL = "https://www.youtube.com/embed/" + lecture.ExerciseUrl;
+}
+
+<div class="text-center">
+    <h1 class="display-4">@ViewBag.LectureName</h1>
+    <br /><br />
+    <div class="accordion">
+        @if (!string.IsNullOrEmpty(lecture.VideoUrl))
+        {
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingOne">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                    Video
+                </button>
+            </h2>
+            <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                    <iframe width="560" height="315" src="@videoURL" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+            </div>
+        </div>
+        }
+        @if (!string.IsNullOrEmpty(lecture.ExerciseUrl))
+        {
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingTwo">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                    Exercise
+                </button>
+            </h2>
+            <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                    <iframe width="560" height="315" src="@exerciseURL" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+            </div>
+        </div>
+        }
+    </div>
+</div>

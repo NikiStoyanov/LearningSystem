@@ -1,0 +1,29 @@
+﻿@using LearningSystem.Data.Models
+@{
+    var lectures = (List<Lecture>)this.ViewBag.Lectures;
+    ViewData["Title"] = ViewBag.CourseName;
+}
+
+<div class="text-center">
+    <h1 class="display-4">@ViewBag.CourseName</h1>
+    <br /><br />
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var lecture in lectures)
+        {
+            <tr>
+                <td>@lecture.Name</td>
+                <td>
+                    <a type="button" class="btn btn-outline-secondary" asp-controller="Lecture" asp-action="Overview" asp-route-id="@lecture.Id">Open</a>
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+</div>
